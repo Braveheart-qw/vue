@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="box452">
+        <brother1></brother1>
+        <brother2></brother2>
+    </div>
+
+
+</body>
+    <script>
+
+        var bus = new Vue();
+
+        Vue.component("brother1",{
+            template:`<div>组件1（非父子组件）<button @click="cl">推送事件</button></div>`,
+
+            methods:{
+                cl(){
+                    bus.$emit("b1","100");
+                }
+            }
+
+        })
+
+        Vue.component("brother2",{
+            template:`<div style="background: red">组件2（非父子组件）</div>`,
+            //声明周期，mounted代表程序一开始就要执行的代码段
+            mounted(){
+                bus.$on("b1" , (data)=>{
+                    console.log("我监听到了兄弟1组件发来的事件"+data);
+                })
+            }
+        })
+
+
+        new Vue({
+            el : "#box452",
+        })
+    </script>
+</html>
