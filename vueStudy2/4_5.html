@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!--ref的基本使用-->
+    <div id="box45">
+        <button @click="handleClick()">单击，查看rel的基本用法</button>
+        <input type="text" ref="mytext">
+        <input type="email" ref="myemail">
+    </div>
+
+    <!--ref实现组件之间的通信    -->
+    <div id="box45_2">
+        <!--父组件以绝对霸道的方式拿到子组件数据和方法 ，并且可以直接在父组件中改变子组件的值       -->
+        <button @click="getChild()">得到子组件的值</button>
+        <child ref="mychild"></child>
+
+        <!--子组件得到父组件传输而来的数据       -->
+        <button @click="childGetFather()">子组件得到父组件传输来的值</button>
+        <child ref="mychild2"></child>
+
+    </div>
+</body>
+    <script>
+        //ref的基本使用
+        new Vue({
+            el: "#box45",
+            methods:{
+                handleClick(){
+                    //this 指向的是vue实例，ref会自动在vue实例里面创建一个refs对象，而该对象里面就是各个ref的名称，需要调用哪个就是用哪个名称
+                    console.log(this.$refs.mytext.value);
+                    console.log(this.$refs.myemail.value);
+                }
+            }
+        }),
+
+
+        //ref实现组件之间的通信
+        //使用ref实现父子组件之间的通信传输，父组件拥有绝对的控制权(不常用，因为拿到的是整个子组件，消耗资源)
+        Vue.component("child",{
+            template:`
+                    <div>我是子组件    {{ childName }}</div>
+            `,
+            data(){
+                return{
+                    childName:"我是子组件",
+                }
+            },
+            methods:{
+                getFather(data){
+                    console.log("我被调用了")
+                    console.log(data);
+                }
+            }
+
+        }),
+
+        new Vue({
+            el:"#box45_2",
+            data:{
+                father:"我是父组件"
+            },
+            methods: {
+                getChild(){
+                    //ref这时候是放在子组件上的，所以ref代表的是整个子组件,所以和ref的基本使用相同，调用你想要的数据就可以了，还可以调用方法
+                    console.log(this.$refs.mychild.childName);
+                    this.$refs.mychild.childName = "我被父组件改掉了"
+                },
+                childGetFather(){
+                  this.$refs.mychild2.getFather(this.father);
+                }
+
+            }
+        })
+
+
+    </script>
+</html>
