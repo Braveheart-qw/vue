@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="box442">
+        {{current}}
+        <!--子组件向父组件通信    ①-->
+        <child @myevent="handleEvent($event,1000)"></child>
+    </div>
+</body>
+
+    <script>
+        //    全局定义组件
+        Vue.component("child",{
+            template: `<div>
+                            <p>我是子组件，单击按钮向父组件传输数据
+                                <button @click="handleChild()">单击</button>
+                            </p>
+                      </div>`,
+
+            methods:{
+                handleChild(){
+                    //通过this.$emit调用在 ① 处自定义的事件，① 事件绑定了父组件的方法，①事件就是子组件和父组件通信的桥梁,【注意】自定义事件名最好用 ” - “ 连接符，一定是全小写
+                    //可以在这里传参，这里传参会自动找到自定义的事件，让后将参数传输到$event
+                    this.$emit("myevent","子组件向父组件传值");
+                }
+            }
+
+        }),
+
+        new Vue({
+            el: "#box442",
+            data:{
+                current:"父组件"
+            },
+            methods:{
+                //被子组件通过this.$emit调用的函数
+                handleEvent(ev,s){
+                    console.log(ev+s);
+                }
+            }
+        })
+
+
+    </script>
+</html>
