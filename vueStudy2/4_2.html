@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--    vue组件的引用格式-->
+    <div id="box42">
+        <navbar></navbar>
+    </div>
+</body>
+    <script>
+        //用“”太麻烦，所以我们使用 es6提供字符串模板 ``
+        // Vue.component("navbar" ,{
+        //     template:"<div>" +
+        //         "<button>" +
+        //         "</button>" +
+        //         "</div>"
+        // })
+        //Vue组件的定义格式(全局定义组件格式)，需要对组件绑定对应的方法，不可以绑定在vue实例化里面，而是直接在当前组件中绑定
+        Vue.component("navbar" , {
+            template:
+                   `
+                    <div>
+                        <button>返回</button>
+                        {{ myName }}
+                        <button>主页</button>
+                        调用子组件：<navbarChild></navbarChild>
+                    </div>`
+            ,
+            methods:{
+            //   组件对应的方法定义在这里
+            },
+            //自定义组件当中的data要写成函数形式
+            data(){
+                return {
+                    myName:"我是根组件的子组件"
+                }
+            },
+
+            //如果想定义局部组件
+
+            components:{
+                navbarChild:{
+                    //【注意】当自定义组件具有多个结点时，需要有一个父节点
+                    template:`<section>
+                                  <span>
+                                        我是局部组件，是navbar组件的孩子，只有navbar才可以调用我
+                                  </span>
+                                  <span>
+                                        我是局部组件，是navbar组件的孩子，只有navbar才可以调用我
+                                  </span>
+                              </section>
+                            `
+                },
+            }
+        })
+
+
+        //    实例化 就是根组件
+        new Vue({
+            el: "#box42"
+        })
+
+    </script>
+</html>
