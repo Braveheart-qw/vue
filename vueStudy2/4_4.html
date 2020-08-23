@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="box44">
+        <!--rootname属性 就是向子组件传输参数的key，子组件接收参数，就是按照改属性名接收        -->
+        <navbar rootname="我的父组件是root"></navbar>
+        <!--如何将父组件中的属性或者状态传入子组件,需要加上动态绑定，这样才不会将传入的值当作字符串，而是把传入值得区域当作一个js区域-->
+        <navbar :datalist="datalist"></navbar>
+    </div>
+
+
+</body>
+<script>
+
+    //定义组件
+    Vue.component("navbar",{
+        template:`
+            <div>我是root组件的子组件，root父组件 想我传递值，(父传子),传过来的都是字符串形式，如果需要传输其它类型，需要将传输区域转换成js区域，也就是动态绑定，：
+            <p> {{ rootname }}</p>
+             <p> {{ datalist }}</p>
+            </div>
+
+        `,
+        //接收父组件传递的参数【不可以进行属性验证】
+        //props:["rootname","datalist"],
+        //所以我们不采取props的数组形式接收参数，而是使用props对象得形式进行属性验证
+        props:{
+            rootname:String,
+            datalist:Array
+        }
+
+    })
+
+    //root组件
+    new Vue({
+        el: "#box44",
+        data:{
+            datalist:[1,2,3],
+        }
+    })
+</script>
+</html>
