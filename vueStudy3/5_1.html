@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="box51">
+        <navbar>
+            <p>在引入的子组件中，使用其它标签，比如当前p标签，如果子组件中不留下固定坑位，则无法使用该标签</p>
+            <span>多个标签也可以被插入到slot插槽中</span>
+        </navbar>
+
+        <navbar v-show="isShow">
+                <!--高级使用,如果把控制部件 放在自定义组件中，在进行不同父组件引入该组件时，就需要使用通过非父组件通信机制或者子传父的方式，来改变父组件中的状态
+                而使用slot插槽方式，可在将响应的标签写入到子组件，并且，具有直接访问父组件的特权
+                示例如下，button应该是子组件中的标签，但是使用slot之后，就可以在外部插入标签，并且具有直接访问父组件的特权-->
+                <button @click="handleClick">控制父组件的isShow状态</button>
+        </navbar>
+    </div>
+</body>
+<script>
+    Vue.component('navbar',{
+        template: `
+            <div>
+                <div>slot的基本使用场景</div>
+                <slot></slot>
+            </div>
+        `
+    }),
+
+    new Vue({
+        el:'#box51',
+        data:{
+            isShow:true,
+        },
+        methods:{
+            handleClick() {
+                this.isShow = !this.isShow;
+            }
+        }
+    })
+
+</script>
+</html>
