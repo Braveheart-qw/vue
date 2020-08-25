@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="box531">
+        <button @click="isShow=!isShow">单击</button>
+
+        <!--单个元素过渡,transition内置标签只可以控制一个元素        -->
+        <transition>
+            <p v-show="isShow">Heloise</p>
+        </transition>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#box531",
+        data: {
+            isShow :"true",
+        }
+    })
+</script>
+</html>
