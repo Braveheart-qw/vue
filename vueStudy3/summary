@@ -43,7 +43,7 @@ vue进阶
 
        5.4 列表过渡
             使用<transition-group>
-            
+
             【注意】该内置标签 默认会自动实例化出一个span标签，如果在列表中，根据ul-li 标签紧密联系的特点，我们可以直接用<transition-group tag="ul">实例化出一个ul
             标签，（因此原先的ul删除，使用实例化出的ul标签）
 
