@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="box55">
+        <input type="number" v-model="number">
+    </div>
+</body>
+    <script>
+       var  vm = new Vue({
+            el:"#box55",        //如果该行被注释，说明没有找到el节点，就会停止编译
+            data:{
+                number:"5",
+            },
+            beforeCreate:function () {
+                console.log("******生命周期执行顺序一，beforeCreate******");
+                console.log("当前生命周期中的el状态"+this.$el);
+                console.log("当前生命周期中的data状态"+this.$data);
+            },
+            created:function () {
+                console.log("******生命周期执行顺序二，created******");
+                console.log("当前生命周期中的el状态"+this.$el);
+                console.log("当前生命周期中的data状态"+this.$data);
+            },
+            beforeMount:function (){
+                console.log("******生命周期执行顺序三，beforeMount******");
+                console.log("当前生命周期中的el状态"+this.$el);
+                console.log("当前生命周期中的data状态"+this.$data);
+            },
+            mounted:function (){
+                console.log("******生命周期执行顺序四，mounted******");
+                console.log("当前生命周期中的el状态"+this.$el);
+                console.log("当前生命周期中的data状态"+this.$data);
+            },
+
+            beforeUpdate:function () {
+                console.log("******生命周期执行顺序4.1，beforeUpdate******");
+                console.log("当前生命周期中的el状态"+this.$el);
+                console.log("当前生命周期中的data状态"+this.$data);
+            },
+            updated: function () {
+                console.log("******生命周期执行顺序4.2，update******");
+                console.log("当前生命周期中的el状态"+this.$el);
+                console.log("当前生命周期中的data状态"+this.$data);
+            },
+            beforeDestroy:function () {
+                console.log("******生命周期执行顺序五，beforeDestroy******");
+                console.log("当前生命周期中的el状态"+this.$el);
+                console.log("当前生命周期中的data状态"+this.$data);
+            },
+            destroyed: function () {
+                console.log("******生命周期执行顺序六，Destroy******");
+                console.log("当前生命周期中的el状态"+this.$el);
+                console.log("当前生命周期中的data状态"+this.$data);
+            }
+
+        })
+    </script>
+</html>
