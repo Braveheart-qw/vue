@@ -62,7 +62,19 @@ vue进阶
             beforeDestroy
             destroyed
 
+       5.6 利用mounted初始化数据
+            小案例，请求猫眼数据
+            知识点：过滤器
+            Vue.filter('过滤器名称' , callback{
+                return 
+            })
 
+       5.7 自定义指令
+        使用场景：可以操作底层dom
+        vue提供的钩子函数(
+            参数 el,binding,vnode
+            bind,inserted,update,componentUpdated,unbind
+        )
 
 
 
