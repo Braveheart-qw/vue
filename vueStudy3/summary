@@ -75,6 +75,12 @@ vue进阶
             参数 el,binding,vnode
             bind,inserted,update,componentUpdated,unbind
         )
+        【注意】vue学完之后，补一下p651 和 p654两个关于swiper的用法
+
+        5.8 整理组件化项目
+
+
+
 
 
 
