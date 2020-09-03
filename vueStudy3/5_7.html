@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="box58">
+        <!--指令后面是被当作js区域的        -->
+        <div v-hello="mycolor">123456</div>
+    </div>
+</body>
+    <script type="text/javascript">
+        Vue.directive("hello",{
+            //指令中的inserted生命周期和 vue中的created周期一样，只会执行一次
+            inserted(el , bind){
+                el.style.background = bind.value;
+            },
+            //指令中的update周期，和vue中的更新周期相同
+            update(el , bind){
+                el.style.background = bind.value;
+            }
+        })
+
+        var vm = new Vue({
+            el: "#box58",
+            data:{
+                mycolor:"yellow",
+            }
+        })
+    </script>
+</html>
