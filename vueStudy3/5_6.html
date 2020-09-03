@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <div id="box56">
+        <input type="text" placeholder="search" v-model="mytext">
+        <ul>
+            <li v-for="data in getFilm" :key="data.id">
+                <h3>{{data.nm}}</h3>
+                <!--使用vue提供的过滤器                -->
+                <img :src="data.img | filmFilter" />
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="module">
+    Vue.filter('filmFilter',(data)=>{
+        return  data.replace('w.h' , '128.180');
+    })
+    new Vue({
+
+        el: "#box56",
+        data:{
+            filmList:[],
+            mytext:"",
+        },
+        mounted:function () {
+            axios.get("maoyan.json").then(
+                (res)=>{
+                   this.filmList = res.data.coming;
+                    console.log(res.data.coming)
+                },
+                (e)=>{
+                    console.log("请求数据失败")
+                }
+            )
+        },
+        computed:{
+           getFilm(){
+                return this.filmList.filter((item)=>{
+                    return item.nm.indexOf(this.mytext) != -1;
+                })
+           }
+        }
+    })
+</script>
+</html>
