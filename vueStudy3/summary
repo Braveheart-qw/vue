@@ -108,10 +108,31 @@ vue进阶
                     【入口文件】main.js
 
                     启动项目：npm run serve
-                    项目构建：npm run build
-                    项目检查：
+                    项目打包：npm run build
+                    项目检查：npm run lint
 
-                    
+            一个文件一个组件，那么如何引入其它组件，并且使用引入的组件
+            1.import 组件名 from 路径
+
+            2.注册组件
+            全局注册：Vue.component("组件名",组件名);
+            局部注册：components:{
+                组件名:组件名
+            }
+            【注意】局部注册是卸载vue体里面
+
+            【注意】在style的属性添加 scoped 这样就可以实现当前样式影响自己的组件（局部生效），这样就可以避免全局css影响
+
+            【总结】1.nup run build 打包项目之后，将dist文件夹交给后端就行了【复制dist文件夹下的所有文件到后端项目中】
+                    2.组件不要使用内置标签名  比如出现footer标签
+                    3.前面学习的slot具名插槽已经废弃，现在改用v-slot，使用具名插槽的时候必须使用template包裹，如：
+                    <template v-slot:插槽名>
+                        插槽内容
+                    </template>
+
+
+
+
 
 
 
