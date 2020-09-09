@@ -137,7 +137,44 @@ vue进阶
                 解决方案：1.自己进行vue配置，实现跨域 ，【原理】将请求的网站交给vue代理
                         实现步骤：
                                 1.创建配置文件(和package.json同级)
-                                2.
+                                2.module.exports = {
+                                      devServer: {
+                                          proxy: {
+                                              //'ajax'是拦截器
+                                              '/ajax': {
+                                                  target: 'https://m.maoyan.com/',      //主机名
+                                                  //ws: true,
+                                                  changeOrigin: true
+                                              },
+                                          }
+                                      }
+                                  }
+
+           5.10 vue-router
+                功能：控制路径
+                下载：在配置脚手架时，已经下载了vue-router
+                使用：在下载成功的情况下，router/index.js
+                如何控制路由呢？
+                见index.js 中的解释
+
+                当路由地址改变时，说明用户可见视图已经发生改变
+                在主视图里面留下一个<router-view></router-view>标签，路由会自动将访问的地址所对应的组件加载进去
+                【问题】router-view 和 component 标签区别
+                router-view ： 更加倾向于整个视图的改变 比如从“首页” 跳转至 “个人中心”，地址栏会发生改变，路由管理器会自动找到对应的整个视图组件(像这种的组件都存放在views文件夹中)
+                component: 比如“首页”中的 电视剧 和 电影 组件的切换，地址栏不会发生改变
+
+
+
+            【注意】公共组件推荐放在components文件夹中，物理上的视图 存放在views文件夹中 如下：
+            个人中心组件：views文件夹
+            菜单栏：components文件夹中
+
+
+
+
+
+
+
 
 
 
