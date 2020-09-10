@@ -208,7 +208,7 @@ vue进阶
 
             5.16 路由拦截
             在路由配置中配置：
-            全局配置：
+            全局拦截：
             router.beforeEach((to,from,next) =>{
             只要进行路由跳转，都会被拦截下来，进入此逻辑代码区
                 模拟一个判断是否登录的例子
@@ -221,6 +221,21 @@ vue进阶
                     }
                 }
             })
+
+            局部拦截：
+            beforeRouterEnter(to,from,next){
+                在路由被成功创建前，就被拦截
+            }
+
+            beforeRouterUpdate(to,from,next){
+                在当前路由发生更新，拦截器会被调用
+            }
+
+            beforeRouterLeave(to,from,next){
+                离开当前路由时，会被调用
+            }
+
+
 
 
 
