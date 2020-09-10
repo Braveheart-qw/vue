@@ -169,10 +169,58 @@ vue进阶
             个人中心组件：views文件夹
             菜单栏：components文件夹中
 
+            5.11 声明式路由和编程式路由
+            #/路径名
 
+            vue 提供了一个 <router-link></router-link>
+            例如：<router-link to="/film" tag="li" activeClass="styleName">film</router-link>
+            to: 代表的是跳转的路径
+            tag：代表的是将该条<router-link>渲染成 想要的标签  tag="li" 渲染成li 标签
+            activeClass：代表的高亮样式   styleName：样式名
 
+            编程式路由：写在script里的
+            格式：this.$router.push("路径名/参数");
+            【注意】这时候 /参数 是被误认为是路径，然后默认匹配到路由里面，但是路由里面并没有设置这种类型的路径，
+            所有想要vue认定他是 参数，就要使用动态路由5.13
 
+            5.12 二级路由和重定向
+            redirect:  重定向      【用处】解决一个网站两个独立组件的跳转  降低耦合
+            例如：redirect: "/home"   后面跟组件
+                重定向到home组件
 
+            二级路由就是写在一级路由里面
+            children:[
+                path: 路径名
+                component: 组件名
+            ]
+
+            5.13 动态路由
+            【格式】  路径/:id    :id 是一个接收参数的名称，接收方可以使用this.$router.params.id 来接受，必须加冒号，否则会被vue认为是路径
+
+            5.14 命名路由
+                可以在路由里面起名字
+                例如：name: name
+                【用处】可以通过名字跳转
+
+            5.15 vue-history
+                mode：'history'  模式路径中没有#  但是需要在后台配置，详情见官网，vue-cli服务器已经配置了
+                mode: 'hash'  模式路径中带有#
+
+            5.16 路由拦截
+            在路由配置中配置：
+            全局配置：
+            router.beforeEach((to,from,next) =>{
+            只要进行路由跳转，都会被拦截下来，进入此逻辑代码区
+                模拟一个判断是否登录的例子
+                跳转至个人中心，首先判断是否已经登录
+                if(to.path === '/center'){
+                    if(已经登录){
+                        next()  //用来跳转的
+                    }else{
+                        next("/login")
+                    }
+                }
+            })
 
 
 
