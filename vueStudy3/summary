@@ -102,6 +102,7 @@ vue进阶
                     【解决方案】这时候需要下载的插件信息，已经全部保存到package.json文件当中，我们可以删除已经下载的node_modules文件，
                     直接在package.json同级别的文件终端下执行 cnpm install(下载package.json中存在的插件信息)
 
+
                     配置完成的脚手架目录结构
                     见vue_cli文件夹下的myapp文件夹
 
