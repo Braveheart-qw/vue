@@ -31,6 +31,14 @@ vue进阶
         cnpm install swiper --save-dev
         使用  见3_1.html
 
+    4.项目吸顶效果
+      通过判断滚动条的值来执行的一系列的逻辑代码
+      知识点：1.获取当前有效的scroll值   document.documentElement.scrollTop            （BOM）
+             2.获取当前有效的元素宽度，可以利用dom操作（但是在vue开发中是不建议的），使用ref,可以获取dom节点
+
+      【问题】1.position:fixed 设置之后将会脱离文档流，并且样式都会失效，可以重新设置，具有该样式的元素将会透明状，可以重新设置背景色。
+             2.document.documentElement.scrollTop 失效的原因，在vue中设置了overflow:auto属性，因为vue单页面文件，是将每一个dom片段拼凑起来的，
+
 
 
 
