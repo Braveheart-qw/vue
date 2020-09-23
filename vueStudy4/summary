@@ -46,6 +46,9 @@ vue进阶
       知识点：1.下载batter-scroll
             cnpm install batter-scroll --save-dev
 
+             2.使用方法
+             见官网
+
             2.小技巧（动态设置内联样式）
             动态设置样式 :style="myStyle"  myStyle是对象
 
