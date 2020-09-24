@@ -68,6 +68,10 @@ vue进阶
             vueX是状态管理器，存放项目中公共的状态，vueX是作为一个单独的模块存放的，所以这些状态起到了全局的作用。
             图：见vuex.png
 
+            【功能】1.全局状态保存
+                   2.异步处理     （小技巧）缓存到vuex中
+                   3.易于调试
+
         7.2 访问vuex
             this.$store
 
@@ -82,7 +86,21 @@ vue进阶
                          3.通过第二步操作，开发人员访问的操作流程都已经被监控，如果想要调试vuex中的bug，使用指定的第三方工具（devtools）就可以查看具体操作流程。
                          【注意】devtools工具是安装在浏览器中的插件，安装成功后可以看到地址栏上有一个vue的图标
 
+        7.4  使用vuex来进行异步处理
+             1.使用方法：this.$store.dispatch("actionName");
+             2.在vuex 中的action对象里，调用mutations对象的方法，store.commit("functionName" , 参数);
 
+        7.5 vuex提供的另一种访问state的方法   ...mapState(["stateName"]);   ... 是es6中的合并展开运算符，
+            可以用于数组和对象合并  如：var obj1 = {name:'qian'},
+                                     var obj2 = {age : 17},
+                                     {...obj1,...obj2}
+                                     result:{
+                                             name : 'qian',
+                                             age : 17
+                                            }
+
+
+            mapState 需要引入： import {mapState} from 'vuex'    意思：从vuex模块导入 mapState 这个方法
 
 
 
