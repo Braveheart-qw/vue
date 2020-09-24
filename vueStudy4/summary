@@ -86,6 +86,7 @@ vue进阶
                          3.通过第二步操作，开发人员访问的操作流程都已经被监控，如果想要调试vuex中的bug，使用指定的第三方工具（devtools）就可以查看具体操作流程。
                          【注意】devtools工具是安装在浏览器中的插件，安装成功后可以看到地址栏上有一个vue的图标
 
+
         7.4  使用vuex来进行异步处理
              1.使用方法：this.$store.dispatch("actionName");
              2.在vuex 中的action对象里，调用mutations对象的方法，store.commit("functionName" , 参数);
@@ -102,6 +103,55 @@ vue进阶
 
             mapState 需要引入： import {mapState} from 'vuex'    意思：从vuex模块导入 mapState 这个方法
 
+        7.6 getters
+            【功能】可以认为是store的计算属性，可以用来处理state的数据
+                   使用方法：this.$store.getters.计算属性名字
+                            ...mapGetters(["计算属性名字"])
+
+        7.7 mutations风格
+            应该将mutations中的方法名 全部集中放在一个文件中，使用的时候导入该文件
+            使用方法：1.引入
+                     2.[名称]
+
+            优点:修改程序时，只需要更改一处地方
+
+
+
+
+     8. ES6中的模块化导出和导入的两种方式
+        1.全部导出和全部导入
+            导出文件: function A(){
+
+                      }
+                      function B(){
+
+                      }
+                      function C(){
+
+                      }
+
+                      const all = {
+                       A : A(),
+                       B : B(),
+                       C : C()
+                       }
+
+                       export default all
+
+             导入文件: import all from  "导出文件名"
+
+             缺点：把文件中的所有方法全部导入进项目中了（不管是需不需要用到的方法）
+
+        2.全部导出和部分导入
+            导出文件：export function A(){
+
+
+                     }
+                     .....
+
+            导入文件：import {需要的方法函数} from "导出文件名"
+
+            优点：可以根据自己想要的方法进行导入
 
 
 
