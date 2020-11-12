@@ -137,7 +137,7 @@ vue进阶
                 当前端向后端请求的数据不在同一个网站，就会出现跨域问题。
                 解决方案：1.自己进行vue配置，实现跨域 ，【原理】将请求的网站交给vue代理
                         实现步骤：
-                                1.创建配置文件(和package.json同级)
+                                1.创建配置文件vue.config.js(和package.json同级)
                                 2.module.exports = {
                                       devServer: {
                                           proxy: {
